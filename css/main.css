@@ -47,7 +47,7 @@ nav > a {
 }
 
 nav > a > img {
-    height: 12vh;
+    height: 8vh;
     width: auto;
 }
 
@@ -68,6 +68,22 @@ nav > ul > li > a {
 nav > ul > li > a:hover {
     color: #82a58e;
     text-shadow: 0 0 10px black;
+}
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
 }
 
 .hero {
@@ -327,4 +343,52 @@ footer > p > a {
 footer > p > a:hover {
     color: gold;
     text-shadow: 0 0 10px black;
+}
+
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+    }
+
+    header,
+    header.scrolled {
+        height: auto;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 10vh;
+    }
+
+    nav > ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: transparent;
+        padding: 16px 0 24px 0;
+        gap: 16px;
+    }
+
+    nav > ul.open {
+        display: flex;
+    }
+
+    .card-wrapper {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .card {
+        text-align: center;
+    }
+    
+    .card > img {
+        max-width: 140px;
+    }
 }
