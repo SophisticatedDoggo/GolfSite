@@ -47,7 +47,7 @@ nav > a {
 }
 
 nav > a > img {
-    height: 8vh;
+    height: 10vh;
     width: auto;
 }
 
@@ -276,7 +276,8 @@ nav > ul > li > a:hover {
 }
 
 .form-card {
-    background-color: #a4a5a4;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+    background-color: white;
     border-style: solid;
     border-color: gold;
     border-width: 5px;
@@ -324,7 +325,8 @@ nav > ul > li > a:hover {
 }
 
 footer {
-    background-color: #1a1a1a;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95));
+    background-color: white;
     color: white;
     text-align: center;
     padding-top: 8px;
