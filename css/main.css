@@ -105,9 +105,9 @@ nav > ul > li > a:hover {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 48px;
+    padding: 36px;
     max-width: 75vw;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
 }
 
