@@ -87,7 +87,7 @@ nav > ul > li > a:hover {
 }
 
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/Golf-Course-Image.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/Golf-Course-Image.webp);
     background-size: cover;
     background-position: center;
     background-color: #2e5e3e;
@@ -178,7 +178,7 @@ nav > ul > li > a:hover {
 }
 
 .pricing {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Golf-Pricing-Image.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Golf-Pricing-Image.webp');
     background-size: cover;
     background-position: center;
     background-color: #2e5e3e;
@@ -245,7 +245,7 @@ nav > ul > li > a:hover {
 }
 
 .contact {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Golf-Contact-Image.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Golf-Contact-Image.webp');
     background-size: cover;
     background-position: center;
     background-color: #2e5e3e;
