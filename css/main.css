@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f5f7f4;
+    color: #1f2933;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+header {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+    transition: background 0.3s ease;
+    position: fixed;
+    height: 15vh;
+    width: 100%;
+    padding: 16px 32px;
+    top: 0;
+    z-index: 1000;
+}
+
+header.scrolled {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8));
+
+    height: 12vh;
+}
+
+nav {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav > a {
+    color: white;
+    font-weight: 900;
+    font-size: 40px;
+    text-decoration: none;
+}
+
+nav > a > img {
+    height: 12vh;
+    width: auto;
+}
+
+nav > ul {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+nav > ul > li > a:hover {
+    color: #82a58e;
+    text-shadow: 0 0 10px black;
+}
+
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/Golf-Course-Image.jpg);
+    background-size: cover;
+    background-position: center;
+    background-color: #2e5e3e;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 32px;
+    text-align: center;
+}
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 48px;
+    max-width: 75vw;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.hero-card > h1 {
+    margin-bottom: 25px;
+    font-size: 75px;
+}
+
+.hero-card > p {
+    margin-bottom: 35px;
+}
+
+.hero-card > .btn {
+    display: inline-block;
+    background-color: gold;
+    padding: 12px;
+    border-radius:  12px;
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(116, 83, 1);
+    transition: transform 0.2s ease;
+}
+
+.hero-card > .btn:hover {
+    background-color: rgb(116, 83, 1);
+    color: gold;
+    transform: translateY(-1px);
+    box-shadow: 1px 1px black;
+}
+
+.services {
+    padding: 120px 32px;
+    text-align: center;
+}
+
+.services > h2 {
+    margin-bottom: 24px;
+    font-size: 45px;
+}
+
+.card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: white;
+    padding: 12px;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: gold;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 4px 4px #bbbbbb;
+}
+
+.card > img {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    margin-bottom: 12px;
+}
+
+.pricing {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Golf-Pricing-Image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: #2e5e3e;
+    min-height: 70vh;
+    color: white;
+    padding: 120px 32px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.pricing > h2 {
+    margin-bottom: 24px;
+    font-size: 45px;
+}
+
+.pricing > p {
+    margin-bottom: 24px;
+}
+
+.pricing > .btn {
+    display: inline-block;
+    background-color: gold;
+    padding: 12px;
+    border-radius:  12px;
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(116, 83, 1);
+    transition: transform 0.2s ease;
+}
+
+.pricing > .btn:hover {
+    background-color: rgb(116, 83, 1);
+    color: gold;
+    transform: translateY(-1px);
+    box-shadow: 1px 1px black;
+}
+
+.about {
+    padding: 120px 32px;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content > h2, .about-content > p {
+    margin-bottom: 24px;
+}
+
+.about-content > h2 {
+    font-size: 45px;
+}
+
+.about-content > p {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.about-content > p:last-child {
+    font-style: italic;
+    color: #2e5e3e;
+}
+
+.contact {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Golf-Contact-Image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: #2e5e3e;
+    color: white;
+    padding: 120px 32px;
+    font-size: 20px;
+}
+
+.contact > h2 {
+    font-size: 45px;
+}
+
+.contact > p > a {
+    color: white;
+    text-decoration: none;
+}
+
+.contact > p > a:hover {
+    color: gold;
+    text-shadow: 0 0 10px black;
+}
+
+.contact > h2,
+.contact > p {
+    text-align: center;
+    display: block;
+    margin-bottom: 24px;
+}
+
+.form-card {
+    background-color: #a4a5a4;
+    border-style: solid;
+    border-color: gold;
+    border-width: 5px;
+    border-radius: 16px;
+    padding: 48px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-card input,
+.form-card textarea {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 50px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    background-color: white;
+    color: #1f2933;
+}
+
+.form-card textarea {
+    border-radius: 16px;
+    height: 150px;
+    resize: vertical;
+}
+
+.form-card button {
+    background-color: gold;
+    color: rgb(116, 83, 1);
+    padding: 12px 32px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.form-card button:hover {
+    background-color: rgb(116, 83, 1);
+    color: gold;
+    transform: translateY(-2px);
+}
+
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+footer > h3, footer > p{
+    margin-bottom: 6px;
+}
+
+footer > p > a {
+    color: white;
+    text-decoration: none;
+}
+
+footer > p > a:hover {
+    color: gold;
+    text-shadow: 0 0 10px black;
+}
