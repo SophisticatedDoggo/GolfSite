@@ -105,9 +105,9 @@ nav > ul > li > a:hover {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 36px;
+    padding: 48px;
     max-width: 75vw;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
 }
 
@@ -365,7 +365,12 @@ footer > p > a:hover {
     nav {
         flex-wrap: wrap;
         height: auto;
-        min-height: 10vh;
+        min-height: 8vh;
+    }
+
+    nav > a > img {
+        height: 8vh;
+        width: auto;
     }
 
     nav > ul {
@@ -379,6 +384,15 @@ footer > p > a:hover {
 
     nav > ul.open {
         display: flex;
+    }
+
+    .hero-card {
+        padding: 36px;
+        font-size: 18px;
+    }
+
+    .hero-card > h1 {
+        font-size: 40px;
     }
 
     .card-wrapper {
