@@ -387,7 +387,7 @@ footer > p > a:hover {
     }
 
     .hero-card {
-        padding: 36px;
+        padding: 24px;
         font-size: 18px;
     }
 
@@ -406,5 +406,9 @@ footer > p > a:hover {
     
     .card > img {
         max-width: 140px;
+    }
+
+    .form-card {
+        padding: 24px;
     }
 }
