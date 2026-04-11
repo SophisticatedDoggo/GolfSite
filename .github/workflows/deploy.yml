@@ -11,6 +11,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Generate db.php
+        run: |
+          cat > db.php << 'EOF'
+          <?php
+          $servername = "${{ secrets.DB_HOST }}";
+          $username = "${{ secrets.DB_USERNAME }}";
+          $password = "${{ secrets.DB_PASSWORD }}";
+          $dbname = "${{ secrets.DB_NAME }}";
+
+          //Create connection
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          //Check Connection
+          if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+          }
+          EOF
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
