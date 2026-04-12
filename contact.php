@@ -24,7 +24,8 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
-    $mail->setFrom($email, $name);
+    $mail->setFrom(MAIL_USERNAME, "Smith's Golf Grips");
+    $mail->addReplyTo($email, $name);
     $mail->addAddress(MAIL_TO);
 
     $mail->Subject = 'New Regrip Request from ' . $name;
