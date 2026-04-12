@@ -29,9 +29,10 @@ navLinks.forEach(function(link) {
 });
 
 const params = new URLSearchParams(window.location.search);
-const status = params.get('status');
+const status_of_page = params.get('status');
+console.log(status_of_page);
 
-if(status === 'success') {
+if(status_of_page === 'success') {
     const message = document.getElementById('toast-message')
     const toast_div = document.getElementById('toast')
     message.textContent = "Message sent! We'll be in touch soon."
@@ -39,7 +40,7 @@ if(status === 'success') {
     setTimeout(() => {
         toast_div.setAttribute('hidden', '')
     }, 8000) 
-} else if(status === 'error') {
+} else if(status_of_page === 'error') {
     const message = document.getElementById('toast-message')
     const toast_div = document.getElementById('toast')
     message.textContent = "Error: Message not sent."
