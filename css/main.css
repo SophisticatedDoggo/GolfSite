@@ -10,7 +10,7 @@ html {
 
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #f5f7f4;
+    background-color: #242424;
     color: #1f2933;
     line-height: 1.6;
 }
@@ -144,6 +144,7 @@ nav > ul > li > a:hover {
 .services {
     padding: 120px 32px;
     text-align: center;
+    background-color: #f5f7f4;
 }
 
 .services > h2 {
@@ -222,6 +223,7 @@ nav > ul > li > a:hover {
 
 .about {
     padding: 120px 32px;
+    background-color: #f5f7f4;
 }
 
 .about-content {
