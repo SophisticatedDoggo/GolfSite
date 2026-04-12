@@ -10,7 +10,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smith's Golf Grips</title>
+    <title>Price Calculator | Smith's Golf Grips</title>
+    <meta name="description" content="Estimate the cost of your golf club regripping order with Smith's Golf Grips. Choose from Golf Pride, Winn, and Super Stroke grips with $5 labor per grip.">
     <link rel="icon" type="image/svg+xml" href="../images/Smiths_Grips_Logo_alt.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
