@@ -34,5 +34,5 @@ try {
     $mail->send();
     header('Location: index.html?status=success#contact');
 }   catch (Exception $e) {
-    header('Location: index.html?status=error&msg=' . urlencode($e->getMessage()) . '#contact');
+    header('Location: index.html?status=error#contact');
 }
