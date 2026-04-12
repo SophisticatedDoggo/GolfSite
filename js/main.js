@@ -48,3 +48,20 @@ if(status_of_page === 'success') {
         toast_div.setAttribute('hidden', '')
     }, 10000)
 };
+
+if(window.innerWidth <= 768) {
+    const card_elements = document.querySelectorAll('.card')
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('card-active')
+            } else {
+                entry.target.classList.remove('card-active')
+            }
+        })
+    }, { threshold: 0.9 })
+
+    card_elements.forEach(function(card) {
+        observer.observe(card)
+    })
+};
