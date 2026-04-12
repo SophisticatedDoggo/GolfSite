@@ -51,6 +51,8 @@ calc_button.addEventListener('click', function() {
     const labor = labor_cost * club_and_putter_total;
     let total = 0.0;
 
+    result.style.borderStyle = "solid";
+
     if (club_and_putter_total === 0) {
         result.innerHTML = `<p>Please enter at least one club.</p>`;
         return;

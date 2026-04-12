@@ -38,7 +38,7 @@ if(status_of_page === 'success') {
     toast_div.removeAttribute('hidden')
     setTimeout(() => {
         toast_div.setAttribute('hidden', '')
-    }, 8000) 
+    }, 10000) 
 } else if(status_of_page === 'error') {
     const message = document.getElementById('toast-message')
     const toast_div = document.getElementById('toast')
@@ -46,5 +46,5 @@ if(status_of_page === 'success') {
     toast_div.removeAttribute('hidden')
     setTimeout(() => {
         toast_div.setAttribute('hidden', '')
-    }, 8000)
+    }, 10000)
 };
