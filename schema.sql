@@ -1,7 +1,4 @@
--- Drop existing smiths_grips database and create a new one
-DROP DATABASE IF EXISTS smiths_grips;
-CREATE DATABASE smiths_grips;
-USE smiths_grips;
+USE if0_41630087_smiths_grips;
 
 -- Define database tables
 CREATE TABLE grip_prices (

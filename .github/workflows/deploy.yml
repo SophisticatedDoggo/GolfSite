@@ -29,6 +29,15 @@ jobs:
           }
           EOF
 
+      - name: Generate config.php
+        run: |
+          cat > config.php << 'EOF'
+          <?php
+          define('MAIL_USERNAME', '${{ secrets.MAIL_USERNAME }}');
+          define('MAIL_PASSWORD', '${{ secrets.MAIL_PASSWORD }}');
+          define('MAIL_TO', '${{ secrets.MAIL_TO }}');
+          EOF
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:

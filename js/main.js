@@ -27,3 +27,24 @@ navLinks.forEach(function(link) {
     });
     navMenu.classList.remove('open');
 });
+
+const params = new URLSearchParams(window.location.search);
+const status = params.get('status');
+
+if(status === 'success') {
+    const message = document.getElementById('toast-message')
+    const toast_div = document.getElementById('toast')
+    message.textContent = "Message sent! We'll be in touch soon."
+    toast_div.removeAttribute('hidden')
+    setTimeout(() => {
+        toast_div.setAttribute('hidden', '')
+    }, 5000) 
+} else if(status === 'error') {
+    const message = document.getElementById('toast-message')
+    const toast_div = document.getElementById('toast')
+    message.textContent = "Error: Message not sent."
+    toast_div.removeAttribute('hidden')
+    setTimeout(() => {
+        toast_div.setAttribute('hidden', '')
+    }, 5000)
+};

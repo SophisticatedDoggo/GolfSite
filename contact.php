@@ -1,4 +1,5 @@
 <?php
+require 'config.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 require 'phpmailer/src/Exception.php';
@@ -18,13 +19,13 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'smithcorey198@gmail.com';
-    $mail->Password   = 'your_app_password';
+    $mail->Username   = MAIL_USERNAME;
+    $mail->Password   = MAIL_PASSWORD;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
     $mail->setFrom($email, $name);
-    $mail->addAddress('coreys_email@domain.com');
+    $mail->addAddress(MAIL_TO);
 
     $mail->Subject = 'New Regrip Request from ' . $name;
     $mail->Body    = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";

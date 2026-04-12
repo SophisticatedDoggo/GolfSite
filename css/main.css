@@ -134,7 +134,7 @@ nav > ul > li > a:hover {
     background-color: rgb(116, 83, 1);
     color: gold;
     transform: translateY(-1px);
-    box-shadow: 1px 1px black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .services {
@@ -166,7 +166,7 @@ nav > ul > li > a:hover {
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 4px 4px #bbbbbb;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card > img {
@@ -213,7 +213,7 @@ nav > ul > li > a:hover {
     background-color: rgb(116, 83, 1);
     color: gold;
     transform: translateY(-1px);
-    box-shadow: 1px 1px black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .about {
@@ -276,7 +276,6 @@ nav > ul > li > a:hover {
 
 .form-card {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
-    background-color: white;
     border-style: solid;
     border-color: gold;
     border-width: 5px;
@@ -284,6 +283,7 @@ nav > ul > li > a:hover {
     padding: 48px;
     max-width: 600px;
     margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .form-card input,
@@ -321,6 +321,19 @@ nav > ul > li > a:hover {
     background-color: rgb(116, 83, 1);
     color: gold;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#toast {
+    position: fixed;
+    color: black;
+    bottom: 24px;
+    right: 24px;
+    background-color: gold;
+    padding: 16px 24px;
+    box-shadow: 10px 10px 5px darkgrey;
+    border-radius: 12px;
+    z-index: 1001;
 }
 
 footer {
