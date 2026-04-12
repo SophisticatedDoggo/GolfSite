@@ -31,7 +31,7 @@ try {
     $mail->Body    = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
 
     $mail->send();
-    header('Location: index.html?status=success');
+    header('Location: index.html?status=success#contact');
 }   catch (Exception $e) {
-    header('Location: index.html?status=error');
+    header('Location: index.html?status=error#contact');
 }
