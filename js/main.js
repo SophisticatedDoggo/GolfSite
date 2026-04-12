@@ -30,7 +30,7 @@ navLinks.forEach(function(link) {
 
 const params = new URLSearchParams(window.location.search);
 const status_of_page = params.get('status');
-console.log(status_of_page);
+console.log(params.get('msg'));
 
 if(status_of_page === 'success') {
     const message = document.getElementById('toast-message')
