@@ -1,8 +1,40 @@
 <?php
     require('../db.php');
 
-    $results = $conn->query("SELECT * FROM grip_prices");
-    $results_json = json_encode($results->fetch_all(MYSQLI_ASSOC));
+    // Compute min/max final price per brand + club type from real catalog data
+    $results = $conn->query("
+        SELECT
+            g.brand,
+            CASE WHEN LOWER(g.category) LIKE '%putter%' THEN 'putter' ELSE 'swinging' END AS club_type,
+            MIN(ROUND(g.catalog_cost + pc.labor_cost + pc.material_cost + mt.markup, 2)) AS min_price,
+            MAX(ROUND(g.catalog_cost + pc.labor_cost + pc.material_cost + mt.markup, 2)) AS max_price
+        FROM grips g
+        JOIN pricing_config pc ON pc.id = 1
+        JOIN markup_tiers mt
+            ON g.catalog_cost >= mt.min_price
+           AND (mt.max_price IS NULL OR g.catalog_cost <= mt.max_price)
+        WHERE g.active = 1
+        GROUP BY g.brand, club_type
+        ORDER BY g.brand, club_type
+    ");
+    $grip_prices_data = ($results && $results->num_rows > 0) ? $results->fetch_all(MYSQLI_ASSOC) : [];
+
+    // Pull labor cost from config so JS doesn't hardcode it
+    $config_result = $conn->query("SELECT labor_cost FROM pricing_config WHERE id = 1");
+    $config = ($config_result && $config_result->num_rows > 0)
+        ? $config_result->fetch_assoc()
+        : ['labor_cost' => 5.00];
+
+    // Build brand lists for each dropdown
+    $swinging_brands = array_unique(array_column(
+        array_filter($grip_prices_data, fn($r) => $r['club_type'] === 'swinging'),
+        'brand'
+    ));
+    $putter_brands = array_unique(array_column(
+        array_filter($grip_prices_data, fn($r) => $r['club_type'] === 'putter'),
+        'brand'
+    ));
+
     $conn->close();
 ?>
 <!DOCTYPE html>
@@ -73,17 +105,17 @@
                     <div hidden class="club_brand_div">
                         <label for="club_grip_brand">Choose a Brand for Club Grips:</label>
                         <select name="club_grip_brand" id="club_grip_brand">
-                            <option value="Golf Pride">Golf Pride</option>
-                            <option value="Winn">Winn</option>
-                            <option value="Super Stroke">Super Stroke</option>
+                            <?php foreach ($swinging_brands as $brand): ?>
+                                <option value="<?php echo htmlspecialchars($brand); ?>"><?php echo htmlspecialchars($brand); ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div hidden class="putter_brand_div">
                         <label for="putter_grip_brand">Choose a Brand for Putter Grips:</label>
                         <select name="putter_grip_brand" id="putter_grip_brand">
-                            <option value="Golf Pride">Golf Pride</option>
-                            <option value="Winn">Winn</option>
-                            <option value="Super Stroke">Super Stroke</option>
+                            <?php foreach ($putter_brands as $brand): ?>
+                                <option value="<?php echo htmlspecialchars($brand); ?>"><?php echo htmlspecialchars($brand); ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div>
@@ -99,7 +131,10 @@
         <p>&copy; 2025 Smith's Golf Grips. All rights reserved.</p>
         <p><a href="tel:7247576563">724-757-6563</a></p>
     </footer>
-    <script>const grip_prices = <?php echo $results_json?>;</script>
+    <script>
+        const grip_prices = <?php echo json_encode($grip_prices_data); ?>;
+        const labor_cost_per_grip = <?php echo json_encode((float)$config['labor_cost']); ?>;
+    </script>
     <script src="../js/main.js"></script>
     <script src="../js/calculator.js"></script>
 </body>

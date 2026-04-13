@@ -47,8 +47,7 @@ calc_button.addEventListener('click', function() {
     const putter_num = parseFloat(document.getElementById('putters_num').value);
     const result = document.getElementById('result');
     const club_and_putter_total = club_num + putter_num;
-    const labor_cost = 5.0;
-    const labor = labor_cost * club_and_putter_total;
+    const labor = labor_cost_per_grip * club_and_putter_total;
     let total = 0.0;
 
     result.style.borderStyle = "solid";
@@ -59,7 +58,7 @@ calc_button.addEventListener('click', function() {
     }
 
     if(check_yes.checked) {
-        total = club_and_putter_total * labor_cost;
+        total = club_and_putter_total * labor_cost_per_grip;
         result.innerHTML = `<p>Estimated Price: $${total.toFixed(2)}</p>`;
     } else {
         const club_grip_value = document.getElementById('club_grip_brand').value;

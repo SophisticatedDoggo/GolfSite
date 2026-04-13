@@ -1,3 +1,5 @@
 db.php
 config.php
 local_docs/
+data/
+import_grips.php
