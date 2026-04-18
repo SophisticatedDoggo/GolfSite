@@ -532,6 +532,145 @@ footer > p > a:hover {
     color: white;
 }
 
+.club_div,
+.putter_div {
+    margin-top: 16px;
+    margin-bottom: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.order_form {
+    background-color: #f5f7f4;
+    padding: 120px 32px;
+    text-align: center;
+    color: #1f2933;
+}
+
+.form_card {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+    border: 5px solid gold;
+    border-radius: 16px;
+    padding: 48px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form_card label,
+.form_card p {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-align: left;
+    color: white;
+}
+
+.form_card input[type="text"],
+.form_card input[type="number"],
+.form_card input[type="email"],
+.form_card input[type="tel"],
+.form_card textarea {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 50px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    background-color: white;
+    color: #1f2933;
+}
+
+.form_card textarea {
+    border-radius: 16px;
+    height: 150px;
+    resize: vertical;
+}
+
+.form_card .radio-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form_card .radio-group label {
+    margin-bottom: 0;
+}
+
+.form_card button {
+    background-color: gold;
+    color: rgb(116, 83, 1);
+    padding: 12px 32px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-top: 8px;
+}
+
+.form_card button:hover {
+    background-color: rgb(116, 83, 1);
+    color: gold;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Confirmation Page */
+
+.confirmation {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/order_background_image.webp');
+    background-size: cover;
+    background-position: center;
+    background-color: #2e5e3e;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 32px;
+    text-align: center;
+    color: white;
+}
+
+.confirmation-card {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+    border: 5px solid gold;
+    border-radius: 16px;
+    padding: 64px 48px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.confirmation-card > h1 {
+    font-size: 48px;
+    margin-bottom: 24px;
+}
+
+.confirmation-card > p {
+    font-size: 20px;
+    margin-bottom: 32px;
+}
+
+.confirmation-card > .btn {
+    display: inline-block;
+    background-color: gold;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(116, 83, 1);
+    transition: transform 0.2s ease;
+}
+
+.confirmation-card > .btn:hover {
+    background-color: rgb(116, 83, 1);
+    color: gold;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 @media (max-width: 768px) {
     html, body {
         overflow-x: hidden;

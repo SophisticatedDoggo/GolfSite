@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     order_id   INT          NOT NULL,
     grip_id    INT          NOT NULL,
     quantity   INT          NOT NULL DEFAULT 1,
-    unit_price DECIMAL(6,2) NOT NULL,
+    unit_price DECIMAL(6,2) NOT NULL DEFAULT 0.00,
     PRIMARY KEY (id),
     CONSTRAINT fk_order_items_order FOREIGN KEY (order_id)
         REFERENCES orders (id) ON DELETE CASCADE,

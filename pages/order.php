@@ -1,7 +1,14 @@
 <?php
 require('../db.php');
 
+$grip_results = $conn->query("
+        SELECT id, brand, model, size, color, category FROM grips
+        ORDER BY brand, model;
+    ");
 
+$grip_data = $grip_results->fetch_all(MYSQLI_ASSOC);
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +36,7 @@ require('../db.php');
                 <li><a href="../#services">SERVICES</a></li>
                 <li><a href="../#pricing">PRICING</a></li>
                 <li><a href="calculator.php">CALCULATOR</a></li>
+                <li><a href="order.php">ORDER</a></li>
                 <li><a href="../#about">ABOUT</a></li>
                 <li><a href="../#contact">CONTACT</a></li>
             </ul>
@@ -45,6 +53,66 @@ require('../db.php');
                 <a href="../docs/grip_catalog.pdf"><img class="catalog_screenshot" src="../images/catalog_screenshot.webp" alt="catalog screenshot"><b class="catalog_link_text">Click to Open Catalog</b></a>
             </div>
         </section>
+        <section class="order_form">
+            <div class="form_card">
+                <form action="submit_order.php" method="POST">
+                    <div>
+                        <label for="clubs_num">Number of Swinging Clubs:</label>
+                        <input type="number" value="0" min="0" max="99" name="clubs_num" id="clubs_num">
+                    </div>
+                    <div>
+                        <label for="putters_num">Number of Putters:</label>
+                        <input type="number" value="0" min="0" max="99" name="putters_num" id="putters_num">
+                    </div>
+                    <div>
+                        <p>Providing Pre-Purchased Grips?</p>
+                        <div class="radio-group">
+                            <input type="radio" name="provide_grips" id="provide_grips_yes" value="yes">
+                            <label for="provide_grips_yes">Yes</label>
+                            <input type="radio" name="provide_grips" id="provide_grips_no" value="no">
+                            <label for="provide_grips_no">No</label>
+                        </div>
+                    </div>
+                    <div hidden class="club_div"></div>
+                    <datalist id="club_grip">
+                        <?php foreach ($grip_data as $row): ?>
+                            <?php $grip = $row['brand'] . " - " . $row['model'] .  " - " . $row['size'] .  " - " .$row['color'];?>
+                            <?php if ($row['category'] === "swing"): ?>
+                                <option value="<?php echo $grip?>"  data-id="<?php echo $row['id']?>"></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </datalist>
+                    <div hidden class="putter_div"></div>
+                    <datalist id="putter_grip">
+                        <?php foreach ($grip_data as $row): ?>
+                            <?php $grip = $row['brand'] . " - " . $row['model'] .  " - " . $row['size'] .  " - " .$row['color'];?>
+                            <?php if ($row['category'] === "putter"): ?>
+                                <option value="<?php echo $grip?>" data-id="<?php echo $row['id']?>"></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </datalist>
+                    <div>
+                        <label for="cust_name">Name: </label>
+                        <input type="text" name="cust_name" id="cust_name">
+                    </div>
+                    <div>
+                        <label for="cust_email">Email: </label>
+                        <input type="email" name="cust_email" id="cust_email">
+                    </div>
+                    <div>
+                        <label for="cust_phone">Phone: </label>
+                        <input type="tel" name="cust_phone" id="cust_phone">
+                    </div>
+                    <div>
+                        <label for="cust_notes">Additional Notes: </label>
+                        <textarea name="cust_notes" id="cust_notes"></textarea>
+                    </div>
+                    <button type="submit">Submit Order</button>
+                </form>
+            </div>
+        </section>
     </main>
+    <script src="../js/main.js"></script>
+    <script src="../js/order.js"></script>
 </body>
 </html>

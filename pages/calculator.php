@@ -65,6 +65,7 @@
                 <li><a href="../#services">SERVICES</a></li>
                 <li><a href="../#pricing">PRICING</a></li>
                 <li><a href="calculator.php">CALCULATOR</a></li>
+                <li><a href="order.php">ORDER</a></li>
                 <li><a href="../#about">ABOUT</a></li>
                 <li><a href="../#contact">CONTACT</a></li>
             </ul>
