@@ -41,7 +41,8 @@ require('../db.php');
                 <p>Browse our grip catalog below to find what you're looking for, then use the order form to make your selections and submit your request.</p>
             </div>
             <div class="catalog_card">
-                <iframe src="../pdfjs/web/viewer.html?file=../../docs/grip_catalog.pdf#toolbar=0" frameborder="0"></iframe>
+                <iframe class="catalog_frame" src="../pdfjs/web/viewer.html?file=../../docs/grip_catalog.pdf#toolbar=0" frameborder="0"></iframe>
+                <a href="../docs/grip_catalog.pdf"><img class="catalog_screenshot" src="../images/catalog_screenshot.webp" alt="catalog screenshot"><b class="catalog_link_text">Click to Open Catalog</b></a>
             </div>
         </section>
     </main>
