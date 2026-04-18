@@ -1,1 +1,9 @@
-AddType application/javascript .mjs
+<IfModule mod_mime.c>
+    AddType application/javascript .mjs
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.mjs$">
+        Header set Content-Type "application/javascript"
+    </FilesMatch>
+</IfModule>
