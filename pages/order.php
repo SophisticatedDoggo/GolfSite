@@ -122,6 +122,11 @@ $conn->close();
             </div>
         </section>
     </main>
+    <footer>
+        <h3>Smith's Golf Grips</h3>
+        <p>&copy; 2025 Smith's Golf Grips. All rights reserved.</p>
+        <p><a href="tel:7247576563">724-757-6563</a></p>
+    </footer>
     <script src="../js/main.js"></script>
     <script src="../js/order.js"></script>
 </body>
