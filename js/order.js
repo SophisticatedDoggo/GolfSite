@@ -25,16 +25,24 @@ function change_select_divs() {
 
 function update_total() {
     let total_price = 0.0;
-    club_div.querySelectorAll('div').forEach(div => {
-        if (div.dataset.price) {
-            total_price += parseFloat(div.dataset.price);
-        }
-    });
-    putter_div.querySelectorAll('div').forEach(div => {
-        if (div.dataset.price) {
-            total_price += parseFloat(div.dataset.price);
-        }
-    });
+    const labor_per_club = parseFloat(document.getElementById('labor_per_club').value);
+
+    if (check_yes.checked) {
+        const clubs = parseInt(club_num_input.value) || 0;
+        const putters = parseInt(putter_num_input.value) || 0;
+        total_price = labor_per_club * (clubs + putters);
+    } else {
+        club_div.querySelectorAll('.slot_div').forEach(div => {
+            if (div.dataset.price) {
+                total_price += parseFloat(div.dataset.price);
+            }
+        });
+        putter_div.querySelectorAll('.slot_div').forEach(div => {
+            if (div.dataset.price) {
+                total_price += parseFloat(div.dataset.price);
+            }
+        });
+    }
 
     const total_el = document.getElementById('order_total');
     total_el.style.display = total_price > 0 ? 'block' : 'none';
@@ -68,8 +76,15 @@ function generate_club_label() {
             fetch('../pages/get_price.php?grip_id=' + data_id)
                 .then(response => response.json())
                 .then(data => {
-                    club_div.querySelectorAll('div').forEach(div => {
+                    club_div.querySelectorAll('.slot_div').forEach(div => {
                         div.dataset.price = data.price;
+                        let price_el = div.querySelector('.slot_price');
+                        if (!price_el) {
+                            price_el = document.createElement('span');
+                            price_el.classList.add('slot_price');
+                            div.appendChild(price_el);
+                        }
+                        price_el.textContent = '$' + parseFloat(data.price).toFixed(2);
                     });
                     update_total();
                 });
@@ -102,6 +117,7 @@ function generate_club_label() {
         input.setAttribute('type', 'text');
         input.setAttribute('list', 'club_grip');
         input.setAttribute('name', 'club_grip_' + (index + 1));
+        input.setAttribute('required', '');
         input.addEventListener('change', function() {
             const option = document.querySelector('#club_grip option[value="' + input.value + '"]');
             const data_id = option ? option.getAttribute('data-id') : null;
@@ -109,11 +125,18 @@ function generate_club_label() {
             fetch('../pages/get_price.php?grip_id=' + data_id)
                 .then(response => response.json())
                 .then(data => {
-                    div.dataset.price = data.price
+                    div.dataset.price = data.price;
+                    let price_el = div.querySelector('.slot_price');
+                    if (!price_el) {
+                        price_el = document.createElement('span');
+                        price_el.classList.add('slot_price');
+                        div.appendChild(price_el);
+                    }
+                    price_el.textContent = '$' + parseFloat(data.price).toFixed(2);
                     update_total();
                 });
         });
-        
+
         const div = document.createElement('div');
         div.classList.add('slot_div');
         div.appendChild(label);
@@ -150,8 +173,15 @@ function generate_putter_label() {
             fetch('../pages/get_price.php?grip_id=' + data_id)
                 .then(response => response.json())
                 .then(data => {
-                    putter_div.querySelectorAll('div').forEach(div => {
+                    putter_div.querySelectorAll('.slot_div').forEach(div => {
                         div.dataset.price = data.price;
+                        let price_el = div.querySelector('.slot_price');
+                        if (!price_el) {
+                            price_el = document.createElement('span');
+                            price_el.classList.add('slot_price');
+                            div.appendChild(price_el);
+                        }
+                        price_el.textContent = '$' + parseFloat(data.price).toFixed(2);
                     });
                     update_total();
                 });
@@ -184,6 +214,7 @@ function generate_putter_label() {
         input.setAttribute('type', 'text');
         input.setAttribute('list', 'putter_grip');
         input.setAttribute('name', 'putter_grip_' + (index + 1));
+        input.setAttribute('required', '');
         input.addEventListener('change', function() {
         const option = document.querySelector('#putter_grip option[value="' + input.value + '"]');
         const data_id = option ? option.getAttribute('data-id') : null;
@@ -191,11 +222,18 @@ function generate_putter_label() {
         fetch('../pages/get_price.php?grip_id=' + data_id)
             .then(response => response.json())
             .then(data => {
-                div.dataset.price = data.price
+                div.dataset.price = data.price;
+                let price_el = div.querySelector('.slot_price');
+                if (!price_el) {
+                    price_el = document.createElement('span');
+                    price_el.classList.add('slot_price');
+                    div.appendChild(price_el);
+                }
+                price_el.textContent = '$' + parseFloat(data.price).toFixed(2);
                 update_total();
             });
         });
-        
+
         const div = document.createElement('div');
         div.classList.add('slot_div');
         div.appendChild(label);
@@ -209,21 +247,26 @@ check_no.addEventListener('change', (event) => {
     change_select_divs();
     generate_club_label();
     generate_putter_label();
-
+    update_total();
 });
 
 check_yes.addEventListener('change', (event) => {
     club_div.setAttribute("hidden", "")
+    club_div.innerHTML = "";
     putter_div.setAttribute("hidden", "")
+    putter_div.innerHTML = "";
+    update_total();
 });
 
 club_num_input.addEventListener('input', (event) => {
     change_select_divs();
     generate_club_label();
+    update_total();
 });
 
 putter_num_input.addEventListener('input', (event) => {
     change_select_divs();
     generate_putter_label();
+    update_total();
 });
 

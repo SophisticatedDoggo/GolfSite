@@ -581,6 +581,13 @@ footer > p > a:hover {
     margin-bottom: 8px;
 }
 
+.slot_price {
+    color: gold;
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
 #order_total {
     display: none;
     background: rgba(255, 215, 0, 0.15);

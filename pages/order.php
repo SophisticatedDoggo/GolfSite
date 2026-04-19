@@ -8,6 +8,10 @@ $grip_results = $conn->query("
 
 $grip_data = $grip_results->fetch_all(MYSQLI_ASSOC);
 
+$config_result = $conn->query("SELECT labor_cost, material_cost FROM pricing_config WHERE id = 1");
+$config = $config_result->fetch_assoc();
+$labor_per_club = $config['labor_cost'] + $config['material_cost'];
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -58,18 +62,19 @@ $conn->close();
             <div class="form_side">
             <div class="form_card">
                 <form action="submit_order.php" method="POST">
+                    <input type="hidden" id="labor_per_club" value="<?php echo $labor_per_club; ?>">
                     <div>
                         <label for="clubs_num">Number of Swinging Clubs:</label>
-                        <input type="number" value="0" min="0" max="99" name="clubs_num" id="clubs_num">
+                        <input type="number" value="0" min="1" max="99" name="clubs_num" id="clubs_num" required>
                     </div>
                     <div>
                         <label for="putters_num">Number of Putters:</label>
-                        <input type="number" value="0" min="0" max="99" name="putters_num" id="putters_num">
+                        <input type="number" value="0" min="0" max="99" name="putters_num" id="putters_num" required>
                     </div>
                     <div>
                         <p>Providing Pre-Purchased Grips?</p>
                         <div class="radio-group">
-                            <input type="radio" name="provide_grips" id="provide_grips_yes" value="yes">
+                            <input type="radio" name="provide_grips" id="provide_grips_yes" value="yes" required>
                             <label for="provide_grips_yes">Yes</label>
                             <input type="radio" name="provide_grips" id="provide_grips_no" value="no">
                             <label for="provide_grips_no">No</label>
@@ -95,15 +100,15 @@ $conn->close();
                     </datalist>
                     <div>
                         <label for="cust_name">Name: </label>
-                        <input type="text" name="cust_name" id="cust_name">
+                        <input type="text" name="cust_name" id="cust_name" required>
                     </div>
                     <div>
                         <label for="cust_email">Email: </label>
-                        <input type="email" name="cust_email" id="cust_email">
+                        <input type="email" name="cust_email" id="cust_email" required>
                     </div>
                     <div>
                         <label for="cust_phone">Phone: </label>
-                        <input type="tel" name="cust_phone" id="cust_phone">
+                        <input type="tel" name="cust_phone" id="cust_phone" required>
                     </div>
                     <div>
                         <label for="cust_notes">Additional Notes: </label>
