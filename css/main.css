@@ -482,24 +482,53 @@ footer > p > a:hover {
 
 /* Order Page */
 
-.catalog {
+.order_page {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/order_background_image.webp);
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     background-color: #2e5e3e;
     color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 120px 32px;
+    padding: 120px 32px 48px;
     text-align: center;
 }
 
+.order_header {
+    margin-bottom: 48px;
+}
+
+.order_header h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.order_header p {
+    font-size: 20px;
+}
+
+.order_columns {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.catalog_side {
+    flex: 1.2;
+    display: flex;
+    justify-content: center;
+}
+
+.form_side {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
 .catalog_text {
-    width: 50%;
-    padding: 120px 32px;
+    width: 100%;
+    padding: 32px;
     font-size: 20px;
 }
 
@@ -512,15 +541,16 @@ footer > p > a:hover {
 }
 
 .catalog_card {
-    width: 900px;
-    height: 1200px;
+    width: 100%;
+    height: 800px;
 }
 
 .catalog_frame {
     width: 100%;
     height: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.24);
-    border: 2px gold solid;
+    border: 5px gold solid;
+    border-radius: 16px;
 }
 
 .catalog_screenshot {
@@ -540,20 +570,38 @@ footer > p > a:hover {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.order_form {
-    background-color: #f5f7f4;
-    padding: 120px 32px;
-    text-align: center;
-    color: #1f2933;
+.slot_div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 12px;
 }
+
+.slot_div input {
+    margin-bottom: 8px;
+}
+
+#order_total {
+    display: none;
+    background: rgba(255, 215, 0, 0.15);
+    border: 2px solid gold;
+    border-radius: 50px;
+    padding: 14px 24px;
+    color: gold;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
 
 .form_card {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
     border: 5px solid gold;
     border-radius: 16px;
     padding: 48px;
-    max-width: 700px;
-    margin: 0 auto;
+    width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -748,13 +796,13 @@ footer > p > a:hover {
     }
 
     .catalog_card {
-        width: 345px;
-        height: 500px;
+        width: 100%;
+        height: auto;
     }
 
     .catalog_text {
-        width: 80%;
-        padding: 150px 24px;
+        width: 100%;
+        padding: 24px;
     }
 
     .catalog_text > h1 {
@@ -768,9 +816,38 @@ footer > p > a:hover {
     .catalog_screenshot {
         display: block;
         width: 100%;
+        border-radius: 12px;
+        border: 5px solid gold;
     }
 
     .catalog_link_text {
-        display: none;
+        display: block;
+        margin-top: 12px;
+        font-size: 16px;
+        color: white;
+    }
+
+    .order_page {
+        background-attachment: scroll;
+        padding: 100px 16px 48px;
+    }
+
+    .order_header h1 {
+        font-size: 32px;
+    }
+
+    .order_columns {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .catalog_side,
+    .form_side {
+        flex: unset;
+        width: 100%;
+    }
+
+    .form_card {
+        padding: 24px;
     }
 }

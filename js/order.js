@@ -23,6 +23,24 @@ function change_select_divs() {
     }
 };
 
+function update_total() {
+    let total_price = 0.0;
+    club_div.querySelectorAll('div').forEach(div => {
+        if (div.dataset.price) {
+            total_price += parseFloat(div.dataset.price);
+        }
+    });
+    putter_div.querySelectorAll('div').forEach(div => {
+        if (div.dataset.price) {
+            total_price += parseFloat(div.dataset.price);
+        }
+    });
+
+    const total_el = document.getElementById('order_total');
+    total_el.style.display = total_price > 0 ? 'block' : 'none';
+    total_el.textContent = 'Estimated Total: $' + total_price.toFixed(2);
+};
+
 function generate_club_label() {
     if (check_yes.checked) {
         return;
@@ -46,6 +64,16 @@ function generate_club_label() {
                 input.value = data_id;
             }
         });
+        if (data_id) {
+            fetch('../pages/get_price.php?grip_id=' + data_id)
+                .then(response => response.json())
+                .then(data => {
+                    club_div.querySelectorAll('div').forEach(div => {
+                        div.dataset.price = data.price;
+                    });
+                    update_total();
+                });
+        }
     });
 
     const club_heading = document.createElement('p');
@@ -54,9 +82,12 @@ function generate_club_label() {
 
     const apply_label = document.createElement('label');
     apply_label.textContent = "Apply same grip to all clubs:";
-    club_div.appendChild(apply_label);
-    club_div.appendChild(apply_all);
-    club_div.appendChild(apply_button);
+    const apply_div = document.createElement('div');
+    apply_div.style.marginBottom = "16px";
+    apply_div.appendChild(apply_label);
+    apply_div.appendChild(apply_all);
+    apply_div.appendChild(apply_button);
+    club_div.appendChild(apply_div);
 
     for (let index = 0; index < club_num; index++) {
         const label = document.createElement("label");
@@ -75,9 +106,16 @@ function generate_club_label() {
             const option = document.querySelector('#club_grip option[value="' + input.value + '"]');
             const data_id = option ? option.getAttribute('data-id') : null;
             id_input.value = data_id;
+            fetch('../pages/get_price.php?grip_id=' + data_id)
+                .then(response => response.json())
+                .then(data => {
+                    div.dataset.price = data.price
+                    update_total();
+                });
         });
         
         const div = document.createElement('div');
+        div.classList.add('slot_div');
         div.appendChild(label);
         div.appendChild(input);
         div.appendChild(id_input);
@@ -108,6 +146,16 @@ function generate_putter_label() {
                 input.value = data_id;
             }
         });
+        if (data_id) {
+            fetch('../pages/get_price.php?grip_id=' + data_id)
+                .then(response => response.json())
+                .then(data => {
+                    putter_div.querySelectorAll('div').forEach(div => {
+                        div.dataset.price = data.price;
+                    });
+                    update_total();
+                });
+        }
     });
 
     const putter_heading = document.createElement('p');
@@ -116,9 +164,12 @@ function generate_putter_label() {
 
     const apply_label = document.createElement('label');
     apply_label.textContent = "Apply same grip to all putters:";
-    putter_div.appendChild(apply_label);
-    putter_div.appendChild(apply_all);
-    putter_div.appendChild(apply_button);
+    const apply_div = document.createElement('div');
+    apply_div.style.marginBottom = "16px";
+    apply_div.appendChild(apply_label);
+    apply_div.appendChild(apply_all);
+    apply_div.appendChild(apply_button);
+    putter_div.appendChild(apply_div);
 
     for (let index = 0; index < putter_num; index++) {
         const label = document.createElement("label");
@@ -134,12 +185,19 @@ function generate_putter_label() {
         input.setAttribute('list', 'putter_grip');
         input.setAttribute('name', 'putter_grip_' + (index + 1));
         input.addEventListener('change', function() {
-            const option = document.querySelector('#putter_grip option[value="' + input.value + '"]');
-            const data_id = option ? option.getAttribute('data-id') : null;
-            id_input.value = data_id;
+        const option = document.querySelector('#putter_grip option[value="' + input.value + '"]');
+        const data_id = option ? option.getAttribute('data-id') : null;
+        id_input.value = data_id;
+        fetch('../pages/get_price.php?grip_id=' + data_id)
+            .then(response => response.json())
+            .then(data => {
+                div.dataset.price = data.price
+                update_total();
+            });
         });
         
         const div = document.createElement('div');
+        div.classList.add('slot_div');
         div.appendChild(label);
         div.appendChild(input);
         div.appendChild(id_input);

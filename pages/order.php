@@ -43,17 +43,19 @@ $conn->close();
         </nav>
     </header>
     <main>
-        <section class="catalog">
-            <div class="catalog_text">
+        <section class="order_page">
+            <div class="order_header">
                 <h1>Build Your Order</h1>
                 <p>Browse our grip catalog below to find what you're looking for, then use the order form to make your selections and submit your request.</p>
             </div>
-            <div class="catalog_card">
-                <iframe class="catalog_frame" src="../pdfjs/web/viewer.html?file=../../docs/grip_catalog.pdf#toolbar=0" frameborder="0"></iframe>
-                <a href="../docs/grip_catalog.pdf"><img class="catalog_screenshot" src="../images/catalog_screenshot.webp" alt="catalog screenshot"><b class="catalog_link_text">Click to Open Catalog</b></a>
+            <div class="order_columns">
+            <div class="catalog_side">
+                <div class="catalog_card">
+                    <iframe class="catalog_frame" src="../pdfjs/web/viewer.html?file=../../docs/grip_catalog.pdf#toolbar=0" frameborder="0"></iframe>
+                    <a href="../docs/grip_catalog.pdf"><img class="catalog_screenshot" src="../images/catalog_screenshot.webp" alt="catalog screenshot"><b class="catalog_link_text">Click to Open Catalog</b></a>
+                </div>
             </div>
-        </section>
-        <section class="order_form">
+            <div class="form_side">
             <div class="form_card">
                 <form action="submit_order.php" method="POST">
                     <div>
@@ -107,8 +109,11 @@ $conn->close();
                         <label for="cust_notes">Additional Notes: </label>
                         <textarea name="cust_notes" id="cust_notes"></textarea>
                     </div>
+                    <div id="order_total"></div>
                     <button type="submit">Submit Order</button>
                 </form>
+            </div>
+            </div>
             </div>
         </section>
     </main>
