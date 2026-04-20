@@ -738,6 +738,167 @@ th.sort-desc .sort-icon {
    Order detail layout
    ============================================================ */
 
+.detail-card {
+    background: #f5f7f4;
+    border: 1px solid #d0d8cd;
+    border-radius: 16px;
+    padding: 28px 32px;
+    flex: 1;
+    min-width: 320px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.detail-card h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #2e5e3e;
+    border-bottom: 1px solid #d0d8cd;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    margin-top: 0;
+}
+
+.detail-card .admin-form {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    max-width: 100%;
+    margin-bottom: 20px;
+    box-shadow: none;
+}
+
+.detail-card .admin-form label {
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.detail-card .admin-form input[type="text"],
+.detail-card .admin-form input[type="email"],
+.detail-card .admin-form input[type="tel"],
+.detail-card .admin-form input[type="number"],
+.detail-card .admin-form textarea,
+.detail-card .admin-form select {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.14);
+    color: #1a1a1a;
+}
+
+.detail-card .admin-form input::placeholder,
+.detail-card .admin-form textarea::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.detail-card .admin-form input:focus,
+.detail-card .admin-form textarea:focus,
+.detail-card .admin-form select:focus {
+    border-color: #2e5e3e;
+}
+
+.detail-card .admin-form select option {
+    background: white;
+    color: #1a1a1a;
+}
+
+.detail-card .admin-form p {
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.detail-card .admin-form p span {
+    color: #1a1a1a;
+}
+
+.detail-card .admin-form + form {
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin-top: 0;
+}
+
+.detail-card .club_div,
+.detail-card .putter_div {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.detail-card .club_div p,
+.detail-card .putter_div p {
+    color: #2e5e3e;
+}
+
+.detail-card .slot_div label {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.detail-card .slot_price {
+    color: #2e7d52;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.slot_sku {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+}
+
+.own-grips-badge {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    padding: 3px 12px;
+    background: rgba(46, 94, 62, 0.12);
+    border: 1px solid rgba(46, 94, 62, 0.35);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2e5e3e;
+    letter-spacing: 0.05em;
+    font-family: 'Lato', sans-serif;
+}
+
+.own-grips-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(46, 94, 62, 0.08);
+    border: 1px solid rgba(46, 94, 62, 0.25);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+
+.own-grips-icon {
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.own-grips-notice strong {
+    display: block;
+    font-size: 14px;
+    color: #2e5e3e;
+    margin-bottom: 4px;
+}
+
+.own-grips-notice p {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.detail-card .apply-all-div label {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.detail-card .apply-all-div input[type="text"] {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.14);
+    color: #1a1a1a;
+}
+
 main.detail-main {
     display: flex;
     flex-direction: row;

@@ -13,7 +13,7 @@ $result = $stmt->get_result();
 $order = $result->fetch_assoc();
 $stmt->close();
 
-$stmt = $conn->prepare("SELECT oi.grip_id, oi.quantity, oi.unit_price, g.brand, g.model, g.size, g.color, g.category
+$stmt = $conn->prepare("SELECT oi.grip_id, oi.quantity, oi.unit_price, g.sku, g.brand, g.model, g.size, g.color, g.category
     FROM order_items oi
     JOIN grips g ON g.id = oi.grip_id
     WHERE oi.order_id = ?;");
@@ -48,7 +48,7 @@ $conn->close();
 <body>
     <?php require('sidebar.php'); ?>
     <main class="detail-main">
-        <section class="admin-section-card">
+        <section class="detail-card">
             <h1>Order #<?php echo $order_id?></h1>
             <form action="update_order.php" method="POST" class="admin-form">
                 <div>
@@ -90,8 +90,10 @@ $conn->close();
                 <button type="submit" class="btn-gold">Save Changes</button>
             </form>
         </section>
-        <section class="admin-section-card">
-            <h1>Order Items</h1>
+        <section class="detail-card">
+            <h1>Order Items <?php if ($order['clubs_num'] == 0 && $order['putters_num'] == 0): ?>
+                <span class="own-grips-badge">Own Grips</span>
+            <?php endif; ?></h1>
             <?php
                 $clubs   = array_values(array_filter($order_details, fn($i) => $i['category'] === 'swing'));
                 $putters = array_values(array_filter($order_details, fn($i) => $i['category'] === 'putter'));
@@ -127,15 +129,19 @@ $conn->close();
                     </div>
                     <?php for ($n = 1; $n <= $order['clubs_num']; $n++):
                         $item = $clubs[$n - 1] ?? null;
-                        $current_grip = $item ? htmlspecialchars($item['brand'] . ' - ' . $item['model'] . ' - ' . $item['size'] . ' - ' . $item['color']) : '';
-                        $current_id   = $item ? $item['grip_id'] : '';
+                        $current_grip  = $item ? htmlspecialchars($item['brand'] . ' - ' . $item['model'] . ' - ' . $item['size'] . ' - ' . $item['color']) : '';
+                        $current_id    = $item ? $item['grip_id'] : '';
                         $current_price = $item ? $item['unit_price'] : 0;
+                        $current_sku   = $item ? htmlspecialchars($item['sku']) : '';
                     ?>
                         <div class="slot_div" data-price="<?php echo $current_price ?>">
                             <label>Club <?php echo $n ?>:</label>
                             <input type="text" list="club_grip" name="club_grip_<?php echo $n ?>" value="<?php echo $current_grip ?>">
                             <input type="hidden" name="club_grip_id_<?php echo $n ?>" value="<?php echo $current_id ?>">
-                            <span class="slot_price"><?php echo $current_price > 0 ? '$' . number_format($current_price, 2) : '' ?></span>
+                            <span class="slot_price">
+                                <?php echo $current_price > 0 ? '$' . number_format($current_price, 2) : '' ?>
+                                <?php if ($current_sku): ?><small class="slot_sku"><?php echo $current_sku ?></small><?php endif; ?>
+                            </span>
                         </div>
                     <?php endfor; ?>
                 </div>
@@ -151,15 +157,19 @@ $conn->close();
                     </div>
                     <?php for ($n = 1; $n <= $order['putters_num']; $n++):
                         $item = $putters[$n - 1] ?? null;
-                        $current_grip = $item ? htmlspecialchars($item['brand'] . ' - ' . $item['model'] . ' - ' . $item['size'] . ' - ' . $item['color']) : '';
-                        $current_id   = $item ? $item['grip_id'] : '';
+                        $current_grip  = $item ? htmlspecialchars($item['brand'] . ' - ' . $item['model'] . ' - ' . $item['size'] . ' - ' . $item['color']) : '';
+                        $current_id    = $item ? $item['grip_id'] : '';
                         $current_price = $item ? $item['unit_price'] : 0;
+                        $current_sku   = $item ? htmlspecialchars($item['sku']) : '';
                     ?>
                         <div class="slot_div" data-price="<?php echo $current_price ?>">
                             <label>Putter <?php echo $n ?>:</label>
                             <input type="text" list="putter_grip" name="putter_grip_<?php echo $n ?>" value="<?php echo $current_grip ?>">
                             <input type="hidden" name="putter_grip_id_<?php echo $n ?>" value="<?php echo $current_id ?>">
-                            <span class="slot_price"><?php echo $current_price > 0 ? '$' . number_format($current_price, 2) : '' ?></span>
+                            <span class="slot_price">
+                                <?php echo $current_price > 0 ? '$' . number_format($current_price, 2) : '' ?>
+                                <?php if ($current_sku): ?><small class="slot_sku"><?php echo $current_sku ?></small><?php endif; ?>
+                            </span>
                         </div>
                     <?php endfor; ?>
                 </div>
@@ -175,7 +185,13 @@ $conn->close();
             </form>
 
             <?php else: ?>
-            <p style="color:#aaa;margin-bottom:20px;">Customer is providing their own grips.</p>
+            <div class="own-grips-notice">
+                <span class="own-grips-icon">&#9935;</span>
+                <div>
+                    <strong>Customer is providing their own grips</strong>
+                    <p>No grip selection required. Only labor &amp; materials will be charged.</p>
+                </div>
+            </div>
             <form action="toggle_grips.php" method="POST" class="admin-form">
                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
                 <div>
