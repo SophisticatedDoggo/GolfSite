@@ -13,19 +13,15 @@ const navMenu = document.querySelector('nav > ul');
 const navLinks = document.querySelectorAll('nav > ul > li > a')
 
 hamburger.addEventListener('click', function() {
-    if(navMenu.classList.contains('open')) {
-        navMenu.classList.remove('open')
-    } else (
-        navMenu.classList.toggle('open')
-    );
-    
+    const isOpen = navMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
 });
 
 navLinks.forEach(function(link) {
     link.addEventListener('click', function() {
         navMenu.classList.remove('open');
+        hamburger.classList.remove('open');
     });
-    navMenu.classList.remove('open');
 });
 
 const params = new URLSearchParams(window.location.search);

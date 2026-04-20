@@ -778,3 +778,201 @@ main.detail-main {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     margin-top: 0;
 }
+
+/* ============================================================
+   Sidebar toggle (hidden on desktop)
+   ============================================================ */
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 998;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+.mobile-topbar {
+    display: none;
+}
+
+.mobile-topbar-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+}
+
+.sidebar-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.sidebar-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.sidebar-toggle.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.sidebar-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.sidebar-toggle.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    /* Mobile top bar */
+    .mobile-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 52px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
+        border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+        padding: 0 16px;
+        z-index: 1001;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    nav.admin-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.28s ease;
+        min-height: unset;
+    }
+
+    nav.admin-sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Main content — offset for fixed top bar */
+    main {
+        padding: 68px 16px 32px;
+    }
+
+    main.detail-main {
+        padding: 68px 16px 32px;
+        flex-direction: column;
+    }
+
+    /* Cards */
+    .admin-section-card {
+        min-width: unset;
+        width: 100%;
+        padding: 20px 16px;
+    }
+
+    .admin-section-card h1,
+    main h1 {
+        font-size: 22px;
+    }
+
+    /* Forms */
+    .admin-form {
+        max-width: 100%;
+        padding: 20px 16px;
+    }
+
+    /* Table wrap — horizontal scroll */
+    .admin-table-wrap {
+        overflow-x: auto;
+        border-radius: 10px;
+    }
+
+    .admin-table-wrap .grips-header {
+        padding: 16px 16px 0;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    /* Header row with search */
+    .grips-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .grips-header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .table-search {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+    }
+
+    .table-search:focus {
+        width: auto;
+    }
+
+    /* Slot divs on order detail */
+    .slot_div {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .slot_div .slot_price {
+        grid-column: 2;
+        font-size: 12px;
+        padding-left: 2px;
+        margin-top: -4px;
+    }
+
+    /* Apply-all row — stack vertically */
+    .apply-all-div {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .apply-all-div label {
+        white-space: normal !important;
+    }
+
+    .apply-all-div input[type="text"] {
+        width: 100%;
+    }
+
+    .apply-all-div button {
+        align-self: flex-start;
+    }
+
+    /* Login page */
+    .login-page .login-card {
+        padding: 32px 20px;
+    }
+}
