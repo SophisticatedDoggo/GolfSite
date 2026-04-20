@@ -281,31 +281,43 @@ nav > ul > li > a:hover {
 }
 
 .form-card {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
-    border-style: solid;
-    border-color: gold;
-    border-width: 5px;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 215, 0, 0.3);
     border-radius: 16px;
     padding: 48px;
     max-width: 600px;
     margin: 0 auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .form-card input,
 .form-card textarea {
     width: 100%;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 50px;
+    padding: 13px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     margin-bottom: 16px;
-    font-size: 16px;
-    background-color: white;
-    color: #1f2933;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+    transition: border-color 0.2s;
+}
+
+.form-card input::placeholder,
+.form-card textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.form-card input:focus,
+.form-card textarea:focus {
+    outline: none;
+    border-color: rgba(255, 215, 0, 0.55);
 }
 
 .form-card textarea {
-    border-radius: 16px;
+    border-radius: 10px;
     height: 150px;
     resize: vertical;
 }
@@ -316,18 +328,18 @@ nav > ul > li > a:hover {
     padding: 12px 32px;
     border: none;
     border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 15px;
     cursor: pointer;
     display: inline-block;
-    transition: transform 0.2s ease;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .form-card button:hover {
     background-color: rgb(116, 83, 1);
     color: gold;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 #toast {
@@ -349,26 +361,41 @@ nav > ul > li > a:hover {
 }
 
 footer {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95));
-    background-color: white;
-    color: white;
-    text-align: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f2f0 100%);
+    border-top: 3px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+    color: #4a4a4a;
+    padding: 40px 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
-footer > h3, footer > p{
-    margin-bottom: 6px;
+footer > h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #2e5e3e;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+footer > p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
 }
 
 footer > p > a {
-    color: white;
+    color: #555;
     text-decoration: none;
+    transition: color 0.2s;
 }
 
 footer > p > a:hover {
-    color: gold;
-    text-shadow: 0 0 10px black;
+    color: #2e5e3e;
 }
 
 .calculator {
@@ -548,8 +575,8 @@ footer > p > a:hover {
 .catalog_frame {
     width: 100%;
     height: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.24);
-    border: 5px gold solid;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 215, 0, 0.35);
     border-radius: 16px;
 }
 
@@ -590,9 +617,9 @@ footer > p > a:hover {
 
 #order_total {
     display: none;
-    background: rgba(255, 215, 0, 0.15);
-    border: 2px solid gold;
-    border-radius: 50px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    border-radius: 10px;
     padding: 14px 24px;
     color: gold;
     font-weight: 700;
@@ -604,12 +631,13 @@ footer > p > a:hover {
 
 
 .form_card {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
-    border: 5px solid gold;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 215, 0, 0.3);
     border-radius: 16px;
     padding: 48px;
     width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .form_card label,
@@ -618,7 +646,9 @@ footer > p > a:hover {
     font-weight: 700;
     margin-bottom: 6px;
     text-align: left;
-    color: white;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    letter-spacing: 0.04em;
 }
 
 .form_card input[type="text"],
@@ -627,17 +657,30 @@ footer > p > a:hover {
 .form_card input[type="tel"],
 .form_card textarea {
     width: 100%;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 50px;
+    padding: 13px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     margin-bottom: 16px;
-    font-size: 16px;
-    background-color: white;
-    color: #1f2933;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+    transition: border-color 0.2s;
+}
+
+.form_card input::placeholder,
+.form_card textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.form_card input:focus,
+.form_card textarea:focus {
+    outline: none;
+    border-color: rgba(255, 215, 0, 0.55);
 }
 
 .form_card textarea {
-    border-radius: 16px;
+    border-radius: 10px;
     height: 150px;
     resize: vertical;
 }
@@ -659,10 +702,10 @@ footer > p > a:hover {
     padding: 12px 32px;
     border: none;
     border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 15px;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: background 0.2s, transform 0.2s;
     margin-top: 8px;
 }
 
@@ -670,7 +713,7 @@ footer > p > a:hover {
     background-color: rgb(116, 83, 1);
     color: gold;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Confirmation Page */
@@ -690,12 +733,13 @@ footer > p > a:hover {
 }
 
 .confirmation-card {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
-    border: 5px solid gold;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 215, 0, 0.3);
     border-radius: 16px;
     padding: 64px 48px;
     max-width: 600px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .confirmation-card > h1 {
@@ -724,6 +768,43 @@ footer > p > a:hover {
     color: gold;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Admin Login Page */
+
+.login {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../images/Golf-Course-Image.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 32px;
+    color: white;
+}
+
+.login-card {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-card h1 {
+    font-size: 36px;
+    margin-bottom: 24px;
+}
+
+.login-card input[type="password"] {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    background-color: white;
+    color: #1f2933;
+    margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
@@ -824,7 +905,8 @@ footer > p > a:hover {
         display: block;
         width: 100%;
         border-radius: 12px;
-        border: 5px solid gold;
+        border: 1px solid rgba(255, 215, 0, 0.35);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
     .catalog_link_text {
@@ -856,5 +938,13 @@ footer > p > a:hover {
 
     .form_card {
         padding: 24px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px 24px;
+        gap: 12px;
     }
 }

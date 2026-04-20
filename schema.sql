@@ -91,6 +91,10 @@ CREATE TABLE IF NOT EXISTS orders (
     PRIMARY KEY (id)
 );
 
+ALTER TABLE orders 
+ADD COLUMN clubs_num INT NOT NULL DEFAULT 0,
+ADD COLUMN putters_num INT NOT NULL DEFAULT 0;
+
 -- ============================================================
 -- ORDER ITEMS
 -- One row per grip line in an order.
@@ -108,6 +112,19 @@ CREATE TABLE IF NOT EXISTS order_items (
         REFERENCES orders (id) ON DELETE CASCADE,
     CONSTRAINT fk_order_items_grip  FOREIGN KEY (grip_id)
         REFERENCES grips  (id) ON DELETE RESTRICT
+);
+
+-- ============================================================
+-- Admin
+-- One row per admin account
+-- username is unique
+-- password is saved as a hash for security
+-- ============================================================
+CREATE TABLE IF NOT EXISTS admin (
+    id            INT          NOT NULL AUTO_INCREMENT,
+    username      VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 -- ============================================================

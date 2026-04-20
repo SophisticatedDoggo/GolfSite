@@ -8,8 +8,8 @@ $cust_notes = trim($_POST['cust_notes']);
 $clubs_num = trim($_POST['clubs_num']);
 $putters_num = trim($_POST['putters_num']);
 
-$stmt = $conn->prepare("INSERT INTO orders (customer_name, customer_email, customer_phone, notes) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssss", $cust_name, $cust_email, $cust_phone, $cust_notes);
+$stmt = $conn->prepare("INSERT INTO orders (customer_name, customer_email, customer_phone, notes, clubs_num, putters_num) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssii", $cust_name, $cust_email, $cust_phone, $cust_notes, $clubs_num, $putters_num);
 $stmt->execute();
 $stmt->close();
 

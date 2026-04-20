@@ -131,6 +131,7 @@
         <h3>Smith's Golf Grips</h3>
         <p>&copy; 2025 Smith's Golf Grips. All rights reserved.</p>
         <p><a href="tel:7247576563">724-757-6563</a></p>
+        <p><a href="../admin/login.php">Admin</a></p>
     </footer>
     <script>
         const grip_prices = <?php echo json_encode($grip_prices_data); ?>;
