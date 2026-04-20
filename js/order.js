@@ -2,26 +2,30 @@ const club_div = document.querySelector('.club_div');
 const putter_div = document.querySelector('.putter_div');
 const club_num_input = document.getElementById('clubs_num');
 const putter_num_input = document.getElementById('putters_num');
-const check_yes = document.getElementById('provide_grips_yes');
-const check_no = document.getElementById('provide_grips_no');
+const check_yes = document.getElementById('own_grips_yes');
+const check_no = document.getElementById('own_grips_no');
 
 function change_select_divs() {
-    const club_num = document.getElementById('clubs_num').value;
-    const putter_num = document.getElementById('putters_num').value;
+    const club_num = parseInt(document.getElementById('clubs_num').value) || 0;
+    const putter_num = parseInt(document.getElementById('putters_num').value) || 0;
 
-    if(check_no.checked) {
-        if(club_num > 0) {
-            club_div.removeAttribute("hidden")
+    if (check_no.checked) {
+        if (club_num > 0) {
+            club_div.removeAttribute("hidden");
         } else {
-            club_div.setAttribute("hidden", "")
+            club_div.setAttribute("hidden", "");
         }
-        if(putter_num > 0) {
-            putter_div.removeAttribute("hidden")
+
+        if (putter_num > 0) {
+            putter_div.removeAttribute("hidden");
         } else {
-            putter_div.setAttribute("hidden", "")
+            putter_div.setAttribute("hidden", "");
         }
+    } else {
+        club_div.setAttribute("hidden", "");
+        putter_div.setAttribute("hidden", "");
     }
-};
+}
 
 function update_total() {
     let total_price = 0.0;
@@ -270,3 +274,7 @@ putter_num_input.addEventListener('input', (event) => {
     update_total();
 });
 
+change_select_divs();
+generate_club_label();
+generate_putter_label();
+update_total();

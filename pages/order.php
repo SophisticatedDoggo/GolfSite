@@ -71,12 +71,13 @@ $conn->close();
                         <input type="number" value="0" min="0" max="99" name="putters_num" id="putters_num" required>
                     </div>
                     <div>
-                        <p>Providing Pre-Purchased Grips?</p>
+                        <p>Are you providing your own grips?</p>
                         <div class="radio-group">
-                            <input type="radio" name="provide_grips" id="provide_grips_yes" value="yes" required>
-                            <label for="provide_grips_yes">Yes</label>
-                            <input type="radio" name="provide_grips" id="provide_grips_no" value="no">
-                            <label for="provide_grips_no">No</label>
+                            <input type="radio" name="own_grips" id="own_grips_yes" value="1" required>
+                            <label for="own_grips_yes">Yes</label>
+
+                            <input type="radio" name="own_grips" id="own_grips_no" value="0">
+                            <label for="own_grips_no">No</label>
                         </div>
                     </div>
                     <div hidden class="club_div"></div>

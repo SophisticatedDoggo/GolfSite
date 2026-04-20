@@ -4,7 +4,7 @@ require('../db.php');
 
 $order_id = (int) $_GET['id'];
 
-$stmt = $conn->prepare("SELECT o.id, o.customer_name, o.status, o.total_price, o.created_at, o.customer_email, o.customer_phone, o.notes, o.clubs_num, o.putters_num
+$stmt = $conn->prepare("SELECT o.id, o.customer_name, o.status, o.total_price, o.created_at, o.customer_email, o.customer_phone, o.notes, o.clubs_num, o.putters_num, o.own_grips
     FROM orders o
     WHERE o.id = ?;");
 $stmt->bind_param("i", $order_id);
@@ -69,11 +69,11 @@ $conn->close();
                 </div>
                 <div>
                     <label for="clubs_num">Number of Swinging Clubs</label>
-                    <input type="number" name="clubs_num" id="clubs_num" min="0" max="99" value="<?php echo $order['clubs_num'] ?>">
+                    <input type="number" name="clubs_num" id="clubs_num" min="0" max="99" value="<?php echo (int)$order['clubs_num'] ?>">
                 </div>
                 <div>
                     <label for="putters_num">Number of Putters</label>
-                    <input type="number" name="putters_num" id="putters_num" min="0" max="99" value="<?php echo $order['putters_num'] ?>">
+                    <input type="number" name="putters_num" id="putters_num" min="0" max="99" value="<?php echo (int)$order['putters_num'] ?>">
                 </div>
                 <div>
                     <label for="status">Status</label>
@@ -91,7 +91,7 @@ $conn->close();
             </form>
         </section>
         <section class="detail-card">
-            <h1>Order Items <?php if ($order['clubs_num'] == 0 && $order['putters_num'] == 0): ?>
+            <h1>Order Items <?php if ($order['own_grips'] == 1): ?>
                 <span class="own-grips-badge">Own Grips</span>
             <?php endif; ?></h1>
             <?php
@@ -99,7 +99,7 @@ $conn->close();
                 $putters = array_values(array_filter($order_details, fn($i) => $i['category'] === 'putter'));
             ?>
 
-            <?php if ($order['clubs_num'] > 0 || $order['putters_num'] > 0): ?>
+            <?php if ($order['own_grips'] == 0): ?>
             <form action="update_order_items.php" method="POST" class="admin-form">
                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
 
@@ -195,12 +195,12 @@ $conn->close();
             <form action="toggle_grips.php" method="POST" class="admin-form">
                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
                 <div>
-                    <label for="clubs_num">Number of Swinging Clubs</label>
-                    <input type="number" name="clubs_num" id="clubs_num" min="0" max="99" value="0">
+                    <label for="toggle_clubs_num">Number of Swinging Clubs</label>
+                    <input type="number" name="clubs_num" id="toggle_clubs_num" min="0" max="99" value="<?php echo (int)$order['clubs_num'] ?>">
                 </div>
                 <div>
-                    <label for="putters_num">Number of Putters</label>
-                    <input type="number" name="putters_num" id="putters_num" min="0" max="99" value="0">
+                    <label for="toggle_putters_num">Number of Putters</label>
+                    <input type="number" name="putters_num" id="toggle_putters_num" min="0" max="99" value="<?php echo (int)$order['putters_num'] ?>">
                 </div>
                 <button type="submit" class="btn-gold">Switch to Grip Selection</button>
             </form>
