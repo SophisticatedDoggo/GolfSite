@@ -87,13 +87,11 @@ CREATE TABLE IF NOT EXISTS orders (
     status         ENUM('pending','confirmed','completed','cancelled')
                                 NOT NULL DEFAULT 'pending',
     total_price    DECIMAL(8,2) NOT NULL DEFAULT 0.00,
+    clubs_num      INT          NOT NULL DEFAULT 0,
+    putters_num    INT          NOT NULL DEFAULT 0,
     created_at     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-
-ALTER TABLE orders 
-ADD COLUMN clubs_num INT NOT NULL DEFAULT 0,
-ADD COLUMN putters_num INT NOT NULL DEFAULT 0;
 
 -- ============================================================
 -- ORDER ITEMS

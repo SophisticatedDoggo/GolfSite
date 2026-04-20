@@ -36,7 +36,10 @@ $conn->close();
     <?php require('sidebar.php'); ?>
     <main>
         <div class="admin-table-wrap">
-            <h1>Orders</h1>
+            <div class="grips-header" style="padding:28px 28px 0;">
+                <h1 style="margin:0;border:none;padding:0;">Orders</h1>
+                <input type="text" id="order-search" placeholder="Search orders…" class="table-search">
+            </div>
             <table id="orders-table">
                 <thead>
                     <tr>
@@ -87,6 +90,14 @@ $conn->close();
     </footer>
     <script src="../js/main.js"></script>
     <script>
+        document.getElementById('order-search').addEventListener('input', function () {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('#orders-table tbody tr').forEach(row => {
+                const text = Array.from(row.cells).map(c => c.textContent).join(' ').toLowerCase();
+                row.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+
         (function () {
             const table = document.getElementById('orders-table');
             const tbody = table.querySelector('tbody');

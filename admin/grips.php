@@ -87,7 +87,10 @@ $conn->close();
 
         <div class="grips-header">
             <h1 style="margin:0;">Grips</h1>
-            <button class="btn-gold" id="toggle-add-btn">+ Add Grip</button>
+            <div class="grips-header-actions">
+                <input type="text" id="grip-search" placeholder="Search grips…" class="table-search">
+                <button class="btn-gold" id="toggle-add-btn">+ Add Grip</button>
+            </div>
         </div>
 
         <section class="admin-section-card" id="add-grip-section" style="max-width:700px;margin-bottom:28px;display:none;">
@@ -194,6 +197,14 @@ $conn->close();
     </footer>
     <script src="../js/main.js"></script>
     <script>
+        document.getElementById('grip-search').addEventListener('input', function () {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('#grips-table tbody tr').forEach(row => {
+                const text = Array.from(row.cells).map(c => c.textContent).join(' ').toLowerCase();
+                row.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+
         document.getElementById('toggle-add-btn').addEventListener('click', function () {
             const section = document.getElementById('add-grip-section');
             const visible = section.style.display !== 'none';

@@ -160,6 +160,24 @@ main h2 {
     color: #2e5e3e;
 }
 
+.admin-table-wrap .grips-header {
+    margin-bottom: 20px;
+}
+
+.admin-table-wrap .table-search {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #2a2a2a;
+}
+
+.admin-table-wrap .table-search::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+.admin-table-wrap .table-search:focus {
+    border-color: #2e5e3e;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -474,6 +492,33 @@ th.sort-desc .sort-icon {
     color: rgba(255, 80, 80, 1);
 }
 
+.you-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 700;
+    color: gold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.error-banner {
+    background: rgba(255, 80, 80, 0.12);
+    border: 1px solid rgba(255, 80, 80, 0.35);
+    border-radius: 10px;
+    color: rgba(255, 100, 100, 0.95);
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    max-width: 440px;
+}
+
 .btn-activate {
     background: transparent;
     color: rgba(60, 180, 100, 0.85);
@@ -538,11 +583,42 @@ th.sort-desc .sort-icon {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .grips-header h1 {
     border-bottom: none;
     padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.grips-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.table-search {
+    padding: 9px 16px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    color: white;
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+    width: 220px;
+    transition: border-color 0.2s, width 0.25s;
+}
+
+.table-search::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.table-search:focus {
+    outline: none;
+    border-color: rgba(255, 215, 0, 0.55);
+    width: 280px;
 }
 
 .club_div p, .putter_div p {
