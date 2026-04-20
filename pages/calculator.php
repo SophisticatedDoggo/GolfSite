@@ -1,4 +1,6 @@
 <?php
+// DEPRECATED: This page is no longer in use.
+
     require('../db.php');
 
     // Compute min/max final price per brand + club type from real catalog data

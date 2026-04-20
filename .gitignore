@@ -4,3 +4,5 @@ local_docs/
 data/
 import_grips.php
 gen_hash.php
+pages/calculator.php
+js/calculator.js
