@@ -54,7 +54,9 @@ $conn->close();
         <section class="order_page">
             <div class="order_header">
                 <h1>Build Your Order</h1>
-                <p>Browse our grip catalog below to find what you're looking for, then use the order form to make your selections and submit your request.</p>
+                <p>Use the catalog below to look through the grip options currently available. After that, fill out the order form with the number of clubs you need done, 
+                    choose your grips if needed, and send us your information so we can follow up and confirm the details of your order.
+                </p>
             </div>
 
             <div class="order_columns">

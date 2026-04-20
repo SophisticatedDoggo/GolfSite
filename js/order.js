@@ -94,9 +94,11 @@ function setupGripSearch(container) {
         let matches = options;
 
         if (q) {
-            matches = options.filter(option =>
-                option.label.toLowerCase().includes(q)
-            );
+            const tokens = q.split(/\s+/).filter(t => t.length > 0);
+            matches = options.filter(option => {
+                const label = option.label.toLowerCase();
+                return tokens.every(token => label.includes(token));
+            });
         }
 
         matches = matches.slice(0, 25);

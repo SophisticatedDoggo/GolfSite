@@ -610,6 +610,10 @@ footer > p > a:hover {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.apply-all-div {
+    margin-bottom: 24px;
+}
+
 .slot_div {
     display: grid;
     grid-template-columns: auto 1fr;
