@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS orders (
     total_price    DECIMAL(8,2) NOT NULL DEFAULT 0.00,
     clubs_num      INT          NOT NULL DEFAULT 0,
     putters_num    INT          NOT NULL DEFAULT 0,
+    own_grips      TINYINT(1)   NOT NULL DEFAULT 0,
     created_at     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );

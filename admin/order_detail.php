@@ -30,6 +30,9 @@ $grip_results = $conn->query("
 
 $grip_data = $grip_results->fetch_all(MYSQLI_ASSOC);
 
+$swing_grips = array_values(array_filter($grip_data, fn($g) => $g['category'] === 'swing'));
+$putter_grips = array_values(array_filter($grip_data, fn($g) => $g['category'] === 'putter'));
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -103,28 +106,22 @@ $conn->close();
             <form action="update_order_items.php" method="POST" class="admin-form">
                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
 
-                <datalist id="club_grip">
-                    <?php foreach ($grip_data as $g): if ($g['category'] !== 'swing') continue;
-                        $grip_label = $g['brand'] . ' - ' . $g['model'] . ' - ' . $g['size'] . ' - ' . $g['color'];
-                    ?>
-                        <option value="<?php echo htmlspecialchars($grip_label) ?>" data-id="<?php echo $g['id'] ?>"></option>
-                    <?php endforeach; ?>
-                </datalist>
-
-                <datalist id="putter_grip">
-                    <?php foreach ($grip_data as $g): if ($g['category'] !== 'putter') continue;
-                        $grip_label = $g['brand'] . ' - ' . $g['model'] . ' - ' . $g['size'] . ' - ' . $g['color'];
-                    ?>
-                        <option value="<?php echo htmlspecialchars($grip_label) ?>" data-id="<?php echo $g['id'] ?>"></option>
-                    <?php endforeach; ?>
-                </datalist>
-
                 <?php if ($order['clubs_num'] > 0): ?>
                 <div class="club_div">
                     <p>Club Grips</p>
                     <div class="apply-all-div">
                         <label>Apply same grip to all clubs:</label>
-                        <input type="text" list="club_grip" id="apply_all_clubs_input">
+                        <div class="grip-search" data-type="swing">
+                            <input
+                                type="text"
+                                class="grip-search-input"
+                                id="apply_all_clubs_input"
+                                autocomplete="off"
+                                placeholder="Search swing grips..."
+                            >
+                            <input type="hidden" class="grip-search-id" id="apply_all_clubs_id">
+                            <div class="grip-search-results"></div>
+                        </div>
                         <button type="button" id="apply_all_clubs_btn">Apply to All</button>
                     </div>
                     <?php for ($n = 1; $n <= $order['clubs_num']; $n++):
@@ -136,8 +133,23 @@ $conn->close();
                     ?>
                         <div class="slot_div" data-price="<?php echo $current_price ?>">
                             <label>Club <?php echo $n ?>:</label>
-                            <input type="text" list="club_grip" name="club_grip_<?php echo $n ?>" value="<?php echo $current_grip ?>">
-                            <input type="hidden" name="club_grip_id_<?php echo $n ?>" value="<?php echo $current_id ?>">
+                            <div class="grip-search" data-type="swing">
+                                <input
+                                    type="text"
+                                    class="grip-search-input"
+                                    name="club_grip_<?php echo $n ?>"
+                                    value="<?php echo $current_grip ?>"
+                                    autocomplete="off"
+                                    placeholder="Search swing grips..."
+                                >
+                                <input
+                                    type="hidden"
+                                    class="grip-search-id"
+                                    name="club_grip_id_<?php echo $n ?>"
+                                    value="<?php echo $current_id ?>"
+                                >
+                                <div class="grip-search-results"></div>
+                            </div>
                             <span class="slot_price">
                                 <?php echo $current_price > 0 ? '$' . number_format($current_price, 2) : '' ?>
                                 <?php if ($current_sku): ?><small class="slot_sku"><?php echo $current_sku ?></small><?php endif; ?>
@@ -152,7 +164,17 @@ $conn->close();
                     <p>Putter Grips</p>
                     <div class="apply-all-div">
                         <label>Apply same grip to all putters:</label>
-                        <input type="text" list="putter_grip" id="apply_all_putters_input">
+                        <div class="grip-search" data-type="putter">
+                            <input
+                                type="text"
+                                class="grip-search-input"
+                                id="apply_all_putters_input"
+                                autocomplete="off"
+                                placeholder="Search putter grips..."
+                            >
+                            <input type="hidden" class="grip-search-id" id="apply_all_putters_id">
+                            <div class="grip-search-results"></div>
+                        </div>
                         <button type="button" id="apply_all_putters_btn">Apply to All</button>
                     </div>
                     <?php for ($n = 1; $n <= $order['putters_num']; $n++):
@@ -164,8 +186,23 @@ $conn->close();
                     ?>
                         <div class="slot_div" data-price="<?php echo $current_price ?>">
                             <label>Putter <?php echo $n ?>:</label>
-                            <input type="text" list="putter_grip" name="putter_grip_<?php echo $n ?>" value="<?php echo $current_grip ?>">
-                            <input type="hidden" name="putter_grip_id_<?php echo $n ?>" value="<?php echo $current_id ?>">
+                            <div class="grip-search" data-type="putter">
+                                <input
+                                    type="text"
+                                    class="grip-search-input"
+                                    name="putter_grip_<?php echo $n ?>"
+                                    value="<?php echo $current_grip ?>"
+                                    autocomplete="off"
+                                    placeholder="Search putter grips..."
+                                >
+                                <input
+                                    type="hidden"
+                                    class="grip-search-id"
+                                    name="putter_grip_id_<?php echo $n ?>"
+                                    value="<?php echo $current_id ?>"
+                                >
+                                <div class="grip-search-results"></div>
+                            </div>
                             <span class="slot_price">
                                 <?php echo $current_price > 0 ? '$' . number_format($current_price, 2) : '' ?>
                                 <?php if ($current_sku): ?><small class="slot_sku"><?php echo $current_sku ?></small><?php endif; ?>
@@ -212,6 +249,21 @@ $conn->close();
         <p>&copy; 2025 Smith's Golf Grips. All rights reserved.</p>
         <p><a href="tel:7247576563">724-757-6563</a></p>
     </footer>
+    <script>
+        const swingGripOptions = <?php echo json_encode(array_map(function($g) {
+            return [
+                'id' => (int)$g['id'],
+                'label' => $g['brand'] . ' - ' . $g['model'] . ' - ' . $g['size'] . ' - ' . $g['color']
+            ];
+        }, $swing_grips), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+
+        const putterGripOptions = <?php echo json_encode(array_map(function($g) {
+            return [
+                'id' => (int)$g['id'],
+                'label' => $g['brand'] . ' - ' . $g['model'] . ' - ' . $g['size'] . ' - ' . $g['color']
+            ];
+        }, $putter_grips), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+    </script>
     <script src="../js/main.js"></script>
     <script src="../js/order_details.js"></script>
 </body>

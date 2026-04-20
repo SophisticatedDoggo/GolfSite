@@ -631,6 +631,37 @@ th.sort-desc .sort-icon {
     margin-top: 8px;
 }
 
+.grip-search {
+    position: relative;
+    width: 100%;
+}
+
+.grip-search-results {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    max-height: 260px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 1000;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.grip-search-result {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+}
+
+.grip-search-result:hover {
+    background: #f3f3f3;
+}
+
 /* ============================================================
    Login page overrides
    ============================================================ */
