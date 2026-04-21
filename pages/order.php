@@ -40,12 +40,12 @@ $conn->close();
                 <span></span>
             </button>
             <ul>
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#services">SERVICES</a></li>
-                <li><a href="#pricing">PRICING</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-                <li><a href="pages/order.php">ORDER</a></li>
+                <li><a href="../index.html#home">HOME</a></li>
+                <li><a href="../index.html#services">SERVICES</a></li>
+                <li><a href="../index.html#pricing">PRICING</a></li>
+                <li><a href="../index.html#about">ABOUT</a></li>
+                <li><a href="../index.html#contact">CONTACT</a></li>
+                <li><a href="order.php">ORDER</a></li>
             </ul>
         </nav>
     </header>
