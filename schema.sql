@@ -8,7 +8,7 @@
 -- Final customer price is calculated at query time using
 -- pricing_config and markup_tiers (see query examples below).
 -- ============================================================
---CREATE DATABASE smiths_grips;
+CREATE DATABASE if0_41630087_smiths_grips;
 USE if0_41630087_smiths_grips;
 
 CREATE TABLE IF NOT EXISTS grips (
