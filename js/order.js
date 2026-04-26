@@ -1,3 +1,13 @@
+if (new URLSearchParams(window.location.search).get('status') === 'error') {
+    const message = document.getElementById('toast-message');
+    const toast_div = document.getElementById('toast');
+    message.textContent = "Please complete the captcha before submitting.";
+    toast_div.removeAttribute('hidden');
+    setTimeout(() => {
+        toast_div.setAttribute('hidden', '');
+    }, 10000);
+}
+
 const club_div = document.querySelector('.club_div');
 const putter_div = document.querySelector('.putter_div');
 const club_num_input = document.getElementById('clubs_num');

@@ -136,6 +136,10 @@ $conn->close();
         <p><a href="../admin/login.php">Admin</a></p>
     </footer>
 
+    <div id="toast" hidden>
+        <p id="toast-message"></p>
+    </div>
+
     <script>
         const swingGripOptions = <?php echo json_encode(array_map(function($g) {
             return [
