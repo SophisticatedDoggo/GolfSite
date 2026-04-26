@@ -120,6 +120,7 @@ $conn->close();
                             </div>
 
                             <div id="order_total"></div>
+                            <div class="h-captcha" data-sitekey="611ee0d8-1f5e-4436-99a6-51720f0827fe" data-theme="dark"></div>
                             <button type="submit">Submit Order</button>
                         </form>
                     </div>
@@ -150,7 +151,7 @@ $conn->close();
             ];
         }, $putter_grips), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
     </script>
-
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     <script src="../js/main.js"></script>
     <script src="../js/order.js"></script>
 </body>

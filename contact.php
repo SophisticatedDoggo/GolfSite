@@ -8,6 +8,14 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+require 'hcaptcha.php';
+
+$token = $_POST['h-captcha-response'] ?? '';
+if (!verifyHcaptcha($token, $_SERVER['REMOTE_ADDR'])) {
+    header('Location: index.html?status=error#contact');
+    exit();
+}
+
 $name = htmlspecialchars($_POST['name']);
 $email = htmlspecialchars($_POST['email']);
 $phone = htmlspecialchars($_POST['phone']);

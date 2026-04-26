@@ -1,5 +1,12 @@
 <?php
 require('../db.php');
+require('../hcaptcha.php');
+
+$token = $_POST['h-captcha-response'] ?? '';
+if (!verifyHcaptcha($token, $_SERVER['REMOTE_ADDR'])) {
+    header('Location: order.php?status=error');
+    exit();
+}
 
 $cust_name = trim($_POST['cust_name']);
 $cust_email = trim($_POST['cust_email']);

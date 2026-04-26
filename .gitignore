@@ -1,5 +1,6 @@
 db.php
 config.php
+hcaptcha.php
 local_docs/
 data/
 import_grips.php
