@@ -36,7 +36,7 @@ try {
     $mail->addReplyTo($email, $name);
     $mail->addAddress(MAIL_TO);
 
-    $mail->Subject = 'New Regrip Request from ' . $name;
+    $mail->Subject = 'New Contact Form Submission from ' . $name;
     $mail->Body    = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
 
     $mail->send();
